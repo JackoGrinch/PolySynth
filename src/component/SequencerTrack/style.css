@@ -1,0 +1,9 @@
+.sequencerTrack {
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 120px;
+  max-height: 120px;
+  width: 780px;
+  background-color: grey;
+}

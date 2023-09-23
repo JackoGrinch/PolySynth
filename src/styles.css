@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Shrikhand&family=VT323&display=swap");
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.labelFont {
+  line-height: 13px;
+  height: 12px;
+  font-family: "Shrikhand", cursive;
+  font-size: 0.8em;
+}
+.screenBackground {
+  height: 15px;
+  background-color: darkslategrey;
+  border: 3px solid rgb(61, 59, 59);
+  font-family: "VT323", monospace;
+  white-space: nowrap;
+  color: rgb(49, 255, 59);
+}
+
+.addStripPanel {
+  display: flow-root;
+  text-align: center;
+  align-items: center;
+  height: 20px;
+  width: 110%;
+  background-color: rgb(158, 154, 154);
+  cursor: pointer;
+}
+.addStripPanel:hover {
+  background-color: rgb(80, 80, 80);
+}

@@ -1,0 +1,14 @@
+.popUpMenu {
+  background-color: lavender;
+  user-select: none;
+}
+.drop-down {
+}
+.menuItem {
+  text-indent: 0;
+  margin-left: 0;
+}
+
+.menuItem:hover {
+  background-color: rgb(179, 179, 212);
+}

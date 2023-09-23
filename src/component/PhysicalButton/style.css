@@ -1,0 +1,43 @@
+.buttonSurface {
+  position: relative;
+  left: 50%;
+  transform: Translate(-50%, 0);
+  height: 15px;
+  width: 30px;
+  background-color: rgba(196, 207, 216, 0.404);
+  user-select: none;
+  cursor: pointer;
+  line-height: 1.3em;
+}
+.clicked {
+  margin-top: 2px;
+}
+.unclicked {
+  border-bottom: 2px solid black;
+  border-right: 1px solid black;
+}
+
+.buttonContainer {
+  width: 30px;
+  height: 25px;
+  margin: 2.5px;
+}
+
+.buttonLabel {
+  display: flex;
+}
+
+.buttonOndicator {
+  margin: 2px;
+  height: 5px;
+  width: 26px;
+}
+
+.buttonOndicatorOff {
+  background-color: rgb(31, 27, 27);
+}
+
+.buttonOndicatorOn {
+  margin-top: 4px;
+  background-color: red;
+}

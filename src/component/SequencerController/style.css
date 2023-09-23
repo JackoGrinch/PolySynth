@@ -1,0 +1,25 @@
+.sequencerController {
+  width: 900px;
+  height: 40px;
+  background-color: grey;
+  display: inline-flex;
+}
+
+.sequencerTitle {
+  font-size: 2em;
+  text-align: left;
+  position: relative;
+  top: 15px;
+  left: 10px;
+  text-decoration: underline;
+}
+
+.tempoControl {
+  position: relative;
+  left: 20px;
+}
+.playControl {
+  position: relative;
+  left: 25px;
+  top: 10px;
+}

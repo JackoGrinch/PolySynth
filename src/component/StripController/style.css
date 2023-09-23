@@ -1,0 +1,31 @@
+.stripController {
+  width: 120px;
+  height: 120px;
+  background-color: gray;
+}
+
+.stripNameLabel {
+  background-color: gray;
+  text-align: left;
+  margin-left: 2px;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 0.9em;
+  margin-top: 2px;
+  height: 15px;
+  width: 100px;
+}
+.controlRow {
+  display: inline-flex;
+  height: 40px;
+}
+
+.audioControl {
+  margin-left: 4px;
+}
+
+.sampleSelector {
+  position: relative;
+  margin-left: 5px;
+  height: 30px;
+  width: 110px;
+}

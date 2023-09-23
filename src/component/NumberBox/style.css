@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Shrikhand&family=VT323&display=swap");
+
+.container {
+  height: 35px;
+  width: 50px;
+  margin: 5px;
+}
+
+.label {
+  line-height: 13px;
+  height: 12px;
+  font-family: "Shrikhand", cursive;
+  font-size: 0.8em;
+}
+.numberBox {
+  background-color: green;
+  /* position: relative; */
+  width: 50px;
+  height: 20px;
+  /* left: 50%;
+  transform: translate(-50%, 0); */
+}
+.displayScreen {
+  display: inline-flex;
+  user-select: none;
+  width: 44px;
+  height: 14px;
+  border: 3px solid rgb(100, 100, 100);
+  background-color: rgb(20, 27, 27);
+  font-family: "VT323", monospace;
+  white-space: nowrap;
+  color: rgb(49, 255, 59);
+}
+.number {
+  height: 15px;
+  width: 15px;
+}
+.leftArrow {
+  line-height: 15px;
+  height: 15px;
+  width: 15px;
+}
+.rightArrow {
+  line-height: 15px;
+  height: 15px;
+  width: 15px;
+}

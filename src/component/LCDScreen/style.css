@@ -1,0 +1,26 @@
+.screenContainer {
+  display: inline-flex;
+}
+
+.LCDScreen {
+  width: 100px;
+  height: 100%;
+  white-space: nowrap;
+}
+
+.screenText {
+  width: 110px;
+}
+
+.loadSampleBox {
+  user-select: none;
+  position: relative;
+  cursor: pointer;
+  top: 2px;
+  right: 4px;
+  margin: 2px;
+  height: 14px;
+  width: 14px;
+  line-height: 6px;
+  background-color: rgb(80, 117, 85);
+}

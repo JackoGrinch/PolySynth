@@ -1,0 +1,17 @@
+.sequencerStrip {
+  display: inline-flex;
+  float: left;
+}
+
+.menuOffStyle {
+  /* display: "none"; */
+  height: 0;
+  width: 0;
+  background-color: green;
+}
+
+.popUpMenu {
+}
+
+.menuStyle {
+}
