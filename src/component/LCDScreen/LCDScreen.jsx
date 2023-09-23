@@ -5,6 +5,7 @@ function LCDScreen(props) {
   //const filePicker = document.getElementById("File-Picker");
 
   function UpdateFile(e) {
+    console.log("UMM HELLO?");
     const File_Picker = e.target;
     //console.log(File_Picker.files[0].name);
     props.callback(File_Picker);

@@ -6,9 +6,10 @@ import SequencerController from "./component/SequencerController/SequencerContro
 import Metronome from "./Audio/Metronome";
 //REMOVE DEFAULT CONTEXT MENU
 function SequencerFrame(props) {
+  var StripKey = 0;
   //AN ARRAY OF OBJECTS CONTAINING ID OF RELATED STRIP AND METRONOME THAT CAN FUNCTION INDEPENDANTLY
   const [metronomes, setMetronome] = useState([
-    { id: 0, metronome: new Metronome(80, null) }
+    { id: 0, metronome: new Metronome(80, null) },
   ]);
 
   //INITIAL STRIP WITH ID 0 AND A THE INITIAL USESTATE() METRONOME OF ID 0
@@ -20,8 +21,8 @@ function SequencerFrame(props) {
       setNumberOfSteps: (steps) => {
         this.numberOfSteps = steps;
       },
-      metronome: metronomes[0]
-    }
+      metronome: metronomes[0],
+    },
   ]);
 
   useEffect(() => {
@@ -69,12 +70,13 @@ function SequencerFrame(props) {
 
   //WHEN A STRIP IS ADDED GENERATE A NEW ID FOR THE STRIP
   function addStrip() {
+    StripKey++;
     let newName = "Strip " + (getNextAvailableID() + 1).toString();
     //CREATE A NEW METRONOME AND ADD IT INTO THE STATE CONTROLLED
     //metronomes ARRAY WITH THE NEW CORROSPONDING ID
     setMetronome((prevMetro) => [
       ...prevMetro,
-      { id: getNextAvailableID(), metronome: new Metronome(80, null) }
+      { id: getNextAvailableID(), metronome: new Metronome(80, null) },
     ]);
 
     //COMPILE THE NEW GENERATES STRIP DATA AND PUSH IT INTO THE STATE CONTROLLED sequencerStrips Array
@@ -82,7 +84,7 @@ function SequencerFrame(props) {
       name: newName,
       id: getNextAvailableID(),
       numberOfSteps: 8,
-      metronome: metronomes[getNextAvailableID()]
+      metronome: metronomes[getNextAvailableID()],
     };
     setSequencerStrips((prevSteps) => [...sequencerStrips, newStrip]);
   }
@@ -116,7 +118,7 @@ function SequencerFrame(props) {
           // updateMetro={updateMetronome}
           metro={metronomes[Strip.id].metronome}
           name={Strip.name}
-          key={Strip.id}
+          key={StripKey}
           id={Strip.id}
           numSteps={Strip.numberOfSteps}
           removeStrip={removeStrip}

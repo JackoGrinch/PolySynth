@@ -5,6 +5,7 @@ import "./style.css";
 import PopUpMenu from "../../PopUpMenu/PopUpMenu";
 
 function SequencerStrip(props) {
+  var StepKey = 7;
   const menuOffStyle = { display: "none" };
   const [popUpMenuStyle, setPopUpMenuStyle] = useState(menuOffStyle);
   const [numberOfSteps, setNumberOfSteps] = useState(props.numSteps);
@@ -16,7 +17,7 @@ function SequencerStrip(props) {
     { key: 4, isOn: "triggerIndicator triggerIndicatorOff" },
     { key: 5, isOn: "triggerIndicator triggerIndicatorOff" },
     { key: 6, isOn: "triggerIndicator triggerIndicatorOff" },
-    { key: 7, isOn: "triggerIndicator triggerIndicatorOff" }
+    { key: 7, isOn: "triggerIndicator triggerIndicatorOff" },
   ]);
 
   /////////////////////METRONOME MANAGEMENT///////////////////////////
@@ -36,11 +37,11 @@ function SequencerStrip(props) {
     //CREATE A NEW ARRAY FOR THE STEPS WHICH HOLDS THE STATE OF WHICH STEP IS ON OR OFF
     //COULD EACH STEP BE HANDLED INDEPENDANTLY SO NOT EVER STEP IS RERENDERED EVERY BEAT?
     let newSteps = [];
-    stepArray.forEach((step) => {
+    stepArray.forEach((step, index) => {
       let isOn;
-      if (stepNumber === step.key) isOn = "triggerIndicator triggerIndicatorOn";
+      if (stepNumber === index) isOn = "triggerIndicator triggerIndicatorOn";
       else isOn = "triggerIndicator triggerIndicatorOff";
-      newSteps.push({ key: 0, isOn: isOn });
+      newSteps.push({ key: index, isOn: isOn });
     });
     updateStepArray(newSteps);
   }
@@ -51,7 +52,7 @@ function SequencerStrip(props) {
       position: "absolute",
       display: "block",
       left: e.clientX,
-      top: e.clientY
+      top: e.clientY,
     };
     setPopUpMenuStyle(menuOnStyle);
   }
@@ -62,8 +63,8 @@ function SequencerStrip(props) {
   const StripMenuOptions = [
     {
       name: "Delete Strip",
-      callback: removeStrip
-    }
+      callback: removeStrip,
+    },
   ];
 
   ///////////////////////STEP MANAGEMENT////////////////////////////
@@ -74,10 +75,15 @@ function SequencerStrip(props) {
     if (x !== 0) {
       //If increasing the number of Steps
       if (x > numberOfSteps) {
+        StepKey++;
         const newStep = numberOfSteps + 1;
         updateStepArray((prevSteps) => [
           ...stepArray,
-          { key: newStep, value: null }
+          {
+            key: StepKey,
+            isOn: "triggerIndicator triggerIndicatorOff",
+            value: null,
+          },
         ]);
       }
       //if decreasing the number of steps
@@ -85,7 +91,7 @@ function SequencerStrip(props) {
         const newStep = numberOfSteps - 1;
         setNumberOfSteps(x);
         updateStepArray((prevSequenceSteps) =>
-          prevSequenceSteps.filter((_, index) => index < newStep)
+          prevSequenceSteps.filter((_, index) => index < newStep),
         );
       }
       setNumberOfSteps(x);
@@ -96,8 +102,8 @@ function SequencerStrip(props) {
   const updateStep = (id, value) => {
     updateStepArray((prevSequenceSteps) =>
       prevSequenceSteps.map((step) =>
-        step.id === id ? { ...step, value } : step
-      )
+        step.id === id ? { ...step, value } : step,
+      ),
     );
   };
 
