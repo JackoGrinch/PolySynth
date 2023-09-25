@@ -7,11 +7,14 @@ import Metronome from "./Audio/Metronome";
 //REMOVE DEFAULT CONTEXT MENU
 function SequencerFrame(props) {
   var StripKey = 0;
+  const [selectedStrip, setSelectedStrip] = useState("Unselected");
+
   //AN ARRAY OF OBJECTS CONTAINING ID OF RELATED STRIP AND METRONOME THAT CAN FUNCTION INDEPENDANTLY
   const [metronomes, setMetronome] = useState([
     { id: 0, metronome: new Metronome(80, null) },
   ]);
 
+  //ALL CHANGES TO STRIP INFORMATION MUST BE PASSED UP TO THIS CONTROLLED ARRAY OF STRIP AND REDISTRIBUTED FROM HERE
   //INITIAL STRIP WITH ID 0 AND A THE INITIAL USESTATE() METRONOME OF ID 0
   const [sequencerStrips, setSequencerStrips] = useState([
     {
@@ -109,20 +112,27 @@ function SequencerFrame(props) {
   return (
     <div id="my-component">
       <SequencerController
+        selectedStrip={selectedStrip}
         strips={sequencerStrips}
         sequencerAudio={props.audio}
         startMetronome={startMetronome}
       />
       {sequencerStrips.map((Strip) => (
-        <SequencerStrip
-          // updateMetro={updateMetronome}
-          metro={metronomes[Strip.id].metronome}
-          name={Strip.name}
-          key={StripKey}
-          id={Strip.id}
-          numSteps={Strip.numberOfSteps}
-          removeStrip={removeStrip}
-        />
+        <div
+          onClick={() => {
+            setSelectedStrip(Strip);
+          }}
+        >
+          <SequencerStrip
+            // updateMetro={updateMetronome}
+            metro={metronomes[Strip.id].metronome}
+            name={Strip.name}
+            key={StripKey}
+            id={Strip.id}
+            numSteps={Strip.numberOfSteps}
+            removeStrip={removeStrip}
+          />
+        </div>
       ))}
       <div onClick={addStrip} className="addStripPanel">
         +

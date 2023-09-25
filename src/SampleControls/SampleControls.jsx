@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 import NumberBoxDrag from "../component/NumberBox/NumberBoxDrag";
 import LCDScreen from "../component/LCDScreen/LCDScreen";
-function SampleControls() {
+function SampleControls(props) {
   function UpdateSample() {}
 
   return (
@@ -11,7 +11,7 @@ function SampleControls() {
         SAMPLE CONTROL----------------------------
       </div>
       <div className="sampleControlTop">
-        <div className="selectedStripContainer"> STRIP SELECTED </div>
+        <div className="selectedStripContainer">{props.selectedStrip.name}</div>
         <div className="filterContainer">
           <div className="labelFont filterLabel">
             FILTER--------------------

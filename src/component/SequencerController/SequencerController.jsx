@@ -30,8 +30,7 @@ function SequencerController(props) {
         </div>
       </div>
       <div className="sampleControlsContainer">
-        
-        <SampleControls />
+        <SampleControls selectedStrip={props.selectedStrip} />
       </div>
     </div>
   );
