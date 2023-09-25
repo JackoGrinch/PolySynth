@@ -1,10 +1,9 @@
 .sequencerController {
   width: 900px;
-  height: 40px;
+  height: 100px;
   background-color: grey;
   display: inline-flex;
 }
-
 .sequencerTitle {
   font-size: 2em;
   text-align: left;
@@ -14,12 +13,33 @@
   text-decoration: underline;
 }
 
+.globalControlsContainer {
+  position: relative;
+  top: 40px;
+  left: -170px;
+  /* background-color: brown; */
+  height: 60px;
+  width: 200px;
+}
+.globalControlLabel {
+  text-align: left;
+  line-height: 1em;
+}
+.sampleControlsContainer {
+  /* background-color: blue; */
+  position: relative;
+  left: -170px;
+  height: 100px;
+  width: 350px;
+}
+
 .tempoControl {
   position: relative;
-  left: 20px;
+  left: 5px;
+  top: 0px;
 }
 .playControl {
   position: relative;
-  left: 25px;
-  top: 10px;
+  left: 75px;
+  top: -30px;
 }

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 
+//PROPS
+// upperLimit, lowerLimit, increment, initialValue, preffix, decimalPlace, labelText
+
 //upperLimit, lowerLimit
 function NumberBoxDrag(props) {
   const [number, setNumber] = useState(props.initialValue);

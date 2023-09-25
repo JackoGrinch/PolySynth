@@ -1,0 +1,57 @@
+.sampleControlsLabel {
+  margin-top: 5px;
+  font-size: 0.85em;
+  text-align: left;
+}
+.sampleControlTop {
+  display: inline-flex;
+  width: 100%;
+}
+.selectedStripContainer {
+  position: relative;
+  top: 20px;
+  text-align: left;
+  width: 50px;
+  height: 20px;
+  overflow: hidden;
+}
+
+.sampleControlFilter {
+  position: relative;
+  top: -7px;
+  left: 40px;
+  height: 30px;
+  width: 100%;
+  display: inline-flex;
+}
+.sampleControlBottom {
+  position: relative;
+  display: inline-flex;
+}
+
+.filterContainer {
+  position: relative;
+  left: 0px;
+}
+.filterLabel {
+  text-align: left;
+}
+.sampleNBSlider {
+  margin-left: 5px;
+}
+.sampleLevelContainer {
+  position: relative;
+  left: 40px;
+  top: 10px;
+}
+
+.sampleSpeedContainer {
+}
+.sampleLengthContainer {
+}
+.sampleStartContainer {
+}
+
+.sampleSelectorContainer {
+  margin: 0;
+}

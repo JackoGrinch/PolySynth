@@ -3,7 +3,7 @@
 .container {
   height: 35px;
   width: 50px;
-  margin: 5px;
+  margin: 0px;
 }
 
 .label {
@@ -11,6 +11,7 @@
   height: 12px;
   font-family: "Shrikhand", cursive;
   font-size: 0.8em;
+  margin-bottom: 1px;
 }
 .numberBox {
   background-color: green;

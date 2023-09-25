@@ -1,7 +1,12 @@
 .screenContainer {
+  width: 100%;
   display: inline-flex;
 }
 
+.sampleSelectorLabel {
+  width: 110px;
+  text-align: cen;
+}
 .LCDScreen {
   width: 100px;
   height: 100%;

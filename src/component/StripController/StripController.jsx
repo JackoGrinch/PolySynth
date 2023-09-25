@@ -51,10 +51,6 @@ function StripController(props) {
       <div className="audioControl">
         <StripAudioControls />
       </div>
-      <div className="sampleSelector">
-        <LCDScreen screenText={sampleName} callback={handleSampleChange} />
-        <FilePicker accept=".wav, .mp3" />
-      </div>
     </div>
   );
 }
