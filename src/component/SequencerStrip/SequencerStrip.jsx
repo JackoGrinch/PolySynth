@@ -115,7 +115,8 @@ function SequencerStrip(props) {
   return (
     <div onContextMenu={(e) => handleMenuOpen(e)} className="sequencerStrip">
       <StripController
-        stripName={props.name}
+        updateStrip={props.updateStrip}
+        Strip={props.Strip}
         metronome={props.metro}
         numberOfSteps={numberOfSteps}
         changeNumSteps={handleChangeOfSteps}

@@ -7,7 +7,22 @@ import Metronome from "./Audio/Metronome";
 //REMOVE DEFAULT CONTEXT MENU
 function SequencerFrame(props) {
   var StripKey = 0;
-  const [selectedStrip, setSelectedStrip] = useState("Unselected");
+
+  const newStripSettings = {
+    name: "No Sample",
+    location: "null",
+    speed: 1,
+    length: 1,
+    start: 1,
+    pitch: 1,
+    level: 1,
+    filter: {
+      type: 0,
+      freq: 1,
+      res: 1,
+      q: 1,
+    },
+  };
 
   //AN ARRAY OF OBJECTS CONTAINING ID OF RELATED STRIP AND METRONOME THAT CAN FUNCTION INDEPENDANTLY
   const [metronomes, setMetronome] = useState([
@@ -20,14 +35,98 @@ function SequencerFrame(props) {
     {
       name: "Strip 1",
       id: 0,
+      isSelected: true,
       numberOfSteps: 8,
       setNumberOfSteps: (steps) => {
         this.numberOfSteps = steps;
       },
       metronome: metronomes[0],
+      sample: {
+        name: "No Sample",
+        location: "null",
+        speed: 1,
+        length: 1,
+        start: 1,
+        pitch: 1,
+        level: 1,
+        filter: {
+          type: 0,
+          freq: 1,
+          res: 1,
+          q: 1,
+        },
+      },
     },
   ]);
 
+  function updateSequencerStrip(property, value, id) {
+    //FIND THE STRIP TO UPDATE
+    let newStripInfo = Array.apply(null, sequencerStrips);
+    let stripToChange;
+
+    sequencerStrips.map((strip, index) => {
+      if (strip.id === id) {
+        stripToChange = strip;
+      }
+    });
+    //UPDATE THE NECCESARY PROPERTY
+    switch (property) {
+      case "name":
+        stripToChange.name = value;
+        break;
+      case "steps":
+        stripToChange.steps = value;
+        break;
+      case "samplename":
+        stripToChange.sample.name = value;
+        break;
+      case "samplelocation":
+        stripToChange.sample.location = value;
+        break;
+      case "speed":
+        stripToChange.sample.speed = value;
+        break;
+      case "length":
+        stripToChange.sample.length = value;
+        break;
+      case "start":
+        stripToChange.sample.start = value;
+        break;
+      case "pitch":
+        stripToChange.sample.pitch = value;
+        break;
+      case "freq":
+        stripToChange.sample.filter.freq = value;
+        break;
+      case "res":
+        stripToChange.sample.filter.res = value;
+        break;
+      case "q":
+        stripToChange.sample.filter.q = value;
+        break;
+      default:
+        break;
+    }
+
+    //UPDATE THE STATE OF THE SEQUENCER ARRAY
+    sequencerStrips.map((strip, index) => {
+      if (strip.id === id) {
+        newStripInfo[index] = stripToChange;
+        setSequencerStrips(newStripInfo);
+      }
+    });
+  }
+
+  function selectStrip(selectedIndex) {
+    let newStrips = Array.apply(null, sequencerStrips);
+    newStrips.forEach((strip, index) => {
+      strip.isSelected = false;
+      if (index === selectedIndex) {
+        strip.isSelected = true;
+      }
+    });
+    setSequencerStrips(newStrips);
+  }
   useEffect(() => {
     //CONTEXT MENU WILL ALLOW FOR CUSTOM FUNCTIONS SUCH ARE REMOVE STRIP WITHOUT TAKING UP UI SPACE
     function handleContextMenu(e) {
@@ -37,6 +136,7 @@ function SequencerFrame(props) {
     const rootElement = document.getElementById("my-component");
     rootElement.addEventListener("contextmenu", handleContextMenu);
     //should remove the event listener when the component is unmounted
+
     return () => {
       //STOP METRONOMES ON EFFECT END?
       metronomes.forEach((metronome) => {
@@ -83,11 +183,27 @@ function SequencerFrame(props) {
     ]);
 
     //COMPILE THE NEW GENERATES STRIP DATA AND PUSH IT INTO THE STATE CONTROLLED sequencerStrips Array
+    let sample = Object.assign({}, newStripSettings);
     const newStrip = {
       name: newName,
       id: getNextAvailableID(),
       numberOfSteps: 8,
       metronome: metronomes[getNextAvailableID()],
+      sample: {
+        name: "No Sample",
+        location: "null",
+        speed: 1,
+        length: 1,
+        start: 1,
+        pitch: 1,
+        level: 1,
+        filter: {
+          type: 0,
+          freq: 1,
+          q: 1,
+          res: 1,
+        },
+      },
     };
     setSequencerStrips((prevSteps) => [...sequencerStrips, newStrip]);
   }
@@ -111,24 +227,33 @@ function SequencerFrame(props) {
 
   return (
     <div id="my-component">
-      <SequencerController
-        selectedStrip={selectedStrip}
-        strips={sequencerStrips}
-        sequencerAudio={props.audio}
-        startMetronome={startMetronome}
-      />
-      {sequencerStrips.map((Strip) => (
+      {sequencerStrips
+        .filter((strip) => strip.isSelected === true)
+        .map((stripSelected) => (
+          <SequencerController
+            key={0}
+            updateSampleControl={updateSequencerStrip}
+            selectedStrip={stripSelected}
+            strips={sequencerStrips}
+            sequencerAudio={props.audio}
+            startMetronome={startMetronome}
+          />
+        ))}
+
+      {sequencerStrips.map((Strip, index) => (
         <div
+          key={index}
           onClick={() => {
-            setSelectedStrip(Strip);
+            selectStrip(index);
           }}
         >
           <SequencerStrip
-            // updateMetro={updateMetronome}
+            updateStrip={updateSequencerStrip}
+            Strip={Strip}
             metro={metronomes[Strip.id].metronome}
-            name={Strip.name}
+            // name={Strip.name}
             key={StripKey}
-            id={Strip.id}
+            // id={Strip.id}
             numSteps={Strip.numberOfSteps}
             removeStrip={removeStrip}
           />

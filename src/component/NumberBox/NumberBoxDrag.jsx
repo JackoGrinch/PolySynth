@@ -6,7 +6,6 @@ import "./style.css";
 
 //upperLimit, lowerLimit
 function NumberBoxDrag(props) {
-  const [number, setNumber] = useState(props.initialValue);
   const [dragging, setDragging] = useState(false);
   const [dragStart, setDragStart] = useState(0);
 
@@ -21,9 +20,11 @@ function NumberBoxDrag(props) {
         const difference = dragEnd - dragStart;
 
         if (difference > 0) {
-          if (number !== props.lowerLimit) setNumber(number - props.increment);
+          if (props.value !== props.lowerLimit)
+            props.handleChange(props.identifier, props.value - props.increment);
         } else if (difference < 0) {
-          if (number !== props.upperLimit) setNumber(number + props.increment);
+          if (props.value !== props.upperLimit)
+            props.handleChange(props.identifier, props.value + props.increment);
         }
 
         setDragStart(dragEnd);
@@ -37,7 +38,7 @@ function NumberBoxDrag(props) {
       window.removeEventListener("mouseup", handleMouseUp);
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [dragging, dragStart, number]);
+  }, [dragging, dragStart]);
 
   const handleMouseDown = (e) => {
     setDragging(true);
@@ -49,7 +50,7 @@ function NumberBoxDrag(props) {
       <div className="label"> {props.labelText} </div>
       <div className="numberBox">
         <div className="displayScreen" onMouseDown={handleMouseDown}>
-          {number.toFixed(props.decimalPlace)}
+          {props.value.toFixed(props.decimalPlace)}
           {props.suffix}
         </div>
       </div>

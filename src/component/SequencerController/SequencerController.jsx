@@ -15,7 +15,7 @@ function SequencerController(props) {
       <div className="globalControlsContainer labelFont">
         <div className="globalControlLabel"> GLOBAL------------------- </div>
         <div className="tempoControl">
-          <NumberBoxDrag
+          {/* <NumberBoxDrag
             labelText="TEMPO"
             initialValue={120}
             upperLimit={260}
@@ -23,14 +23,17 @@ function SequencerController(props) {
             increment={0.5}
             preffix="bpm"
             decimalPlace={1}
-          />
+          /> */}
         </div>
         <div className="playControl">
           <PhysicalButton callback={startMetro} buttonText="Play" />
         </div>
       </div>
       <div className="sampleControlsContainer">
-        <SampleControls selectedStrip={props.selectedStrip} />
+        <SampleControls
+          selectedStrip={props.selectedStrip}
+          updateSampleControl={props.updateSampleControl}
+        />
       </div>
     </div>
   );

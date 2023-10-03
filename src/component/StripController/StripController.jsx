@@ -8,10 +8,10 @@ import FilePicker from "../../FilePicker/FilePicker";
 
 function StripController(props) {
   const [sampleName, setSampleName] = useState("No Sample");
-  const [StripName, setStripName] = useState(props.stripName);
 
   function handleStripNameChange(e) {
-    setStripName(e.value);
+    // console.log("call for change, value:" + e.target.value);
+    props.updateStrip("name", e.target.value, props.Strip.id);
   }
 
   function handleSampleChange(File_Picker) {
@@ -23,12 +23,12 @@ function StripController(props) {
       <div>
         <input
           className="stripNameLabel"
-          value={StripName}
+          value={props.Strip.name}
           onChange={handleStripNameChange}
         />
       </div>
       <div className="controlRow">
-        <NumberBoxDrag
+        {/* <NumberBoxDrag
           labelText="TEMPO"
           initialValue={120}
           upperLimit={260}
@@ -36,7 +36,7 @@ function StripController(props) {
           increment={0.5}
           preffix="bpm"
           decimalPlace={1}
-        />
+        /> */}
         <NumberBoxArrows
           labelText="STEPS"
           Value={props.numberOfSteps}
